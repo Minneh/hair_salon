@@ -9,7 +9,7 @@ public class ClientTest{
 
   public void Client_instantiatesWithName_String(){
     Client myClient = new Client("Michael King");
-    assertEquals("Michael King", myClient.getDescription();
+    assertEquals("Michael King", myClient.getDescription());
   }
 
 }

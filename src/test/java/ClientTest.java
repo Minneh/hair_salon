@@ -7,4 +7,9 @@ public class ClientTest{
     assertEquals(true, myClient instanceof Client);
   }
 
+  public void Client_instantiatesWithName_String(){
+    Client myClient = new Client("Michael King");
+    assertEquals("Michael King", myClient.getDescription();
+  }
+
 }

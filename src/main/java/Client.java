@@ -39,12 +39,22 @@ public class Client{
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO tasks(description, categoryId) VALUES (:description, :categoryId)";
+      String sql = "INSERT INTO clients(name, stylistId) VALUES (:name, :stylistId)";
       this.id = (int) con.createQuery(sql, true)
-        .addParameter("description", this.description)
-        .addParameter("categoryId", this.categoryId)
+        .addParameter("name", this.name)
+        .addParameter("stylistId", this.stylistId)
         .executeUpdate()
         .getKey();
+    }
+  }
+
+  public void update(String description) {
+  try(Connection con = DB.sql2o.open()) {
+    String sql = "UPDATE clients SET name = :name WHERE id = :id";
+    con.createQuery(sql)
+      .addParameter("name", name)
+      .addParameter("id", id)
+      .executeUpdate();
     }
   }
 }

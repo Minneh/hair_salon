@@ -17,12 +17,12 @@ public class ClientTest{
     }
   }
   // confirm we can successfully instantiate Client objects
-  public void Client_instantiatesCorrectly_true(){
+  public void client_instantiatesCorrectly_true(){
     Client myClient = new Client("Michael King", 1);
     assertEquals(true, myClient instanceof Client);
   }
   // make sure we can assign each client a name and then retrieve it
-  public void Client_instantiatesWithName_String(){
+  public void client_instantiatesWithName_String(){
     Client myClient = new Client("Michael King", 1);
     assertEquals("Michael King", myClient.getName());
   }
@@ -30,7 +30,9 @@ public class ClientTest{
   @Test
   public void all_returnsAllInstancesOfClient_true(){
     Client firstClient = new Client("James Redford", 1);
-    Client secondClient = new Client("Kyle Jenkins", 1);
+    firstClient.save();
+    Client secondClient = new Client("Kyle Jenkins", 2);
+    secondClient.save();
     assertEquals(true, Client.all().contains(firstClient));
     assertEquals(true, Client.all().contains(secondClient));
     }
@@ -53,8 +55,15 @@ public class ClientTest{
   }
 
   @Test
+  public void equals_returnsTrueIfNamesAretheSame() {
+    Client firstClient = new Client("James Redford", 1);
+    Client secondClient = new Client("James Redford", 1);
+    assertTrue(firstClient.equals(secondClient));
+  }
+
+  @Test
   public void save_returnsTrueIfNamesAretheSame() {
-    Client myClient = new Client("Merques Houston", 1);
+    Client myClient = new Client("Marques Houston", 1);
     myClient.save();
     assertTrue(Client.all().get(0).equals(myClient));
   }

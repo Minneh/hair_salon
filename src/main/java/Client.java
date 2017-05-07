@@ -28,7 +28,7 @@ public class Client{
   }
 
   public static List<Client> all() {
-    String sql = "SELECT id, name, stylistId FROM clients";
+    String sql = "SELECT id, name, stylistId FROM clients;";
     try(Connection con = DB.sql2o.open()) {
      return con.createQuery(sql).executeAndFetch(Client.class);
     }
@@ -44,6 +44,18 @@ public class Client{
     }
   }
 
+  @Override
+  public boolean equals(Object otherClient){
+    if (!(otherClient instanceof Client)) {
+      return false;
+    } else {
+      Client newClient = (Client) otherClient;
+      return this.getName().equals(newClient.getName()) &&
+             this.getId() == newClient.getId() &&
+             this.getStylistId() == newClient.getStylistId();
+    }
+  }
+
   public void save() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO clients(name, stylistId) VALUES (:name, :stylistId)";
@@ -55,7 +67,7 @@ public class Client{
     }
   }
 
-  public void update(String description) {
+  public void update(String name) {
   try(Connection con = DB.sql2o.open()) {
     String sql = "UPDATE clients SET name = :name WHERE id = :id";
     con.createQuery(sql)

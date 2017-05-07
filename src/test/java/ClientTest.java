@@ -58,5 +58,6 @@ public class ClientTest{
     myClient.save();
     assertTrue(Client.all().get(0).equals(myClient));
   }
+  
 
 }

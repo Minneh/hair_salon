@@ -1,1 +1,14 @@
 <!-- Holds single stylist's details -->
+#if ($stylist)
+<h1>$stylist.getName() clients:</h1>
+<ul>
+  #foreach($client in $stylist.getClients())
+  <li><a href="/stylists/$stylist.getId()/clients/$client.getId()"></a>$client.Name()</li>
+  #end
+</ul>
+#else
+<em><p>Oops! We can't seem to find that stylist.</p></em>
+#end
+
+<a href="/stylists/$stylist.getId()/clients/new">Add a new client</a>
+<a href="/stylists">All Stylists</a>

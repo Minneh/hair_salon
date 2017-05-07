@@ -19,7 +19,7 @@ public class Client{
     return name;
   }
 
-  public static List<Hero> all() {
+  public static List<Client> all() {
     return instances;
   }
 

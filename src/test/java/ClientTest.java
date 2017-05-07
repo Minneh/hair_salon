@@ -3,7 +3,7 @@ import static org.junit.Assert.*;
 
 // class constructor
 public class ClientTest{
-  // confirm we can successfully instantiate Task objects
+  // confirm we can successfully instantiate Client objects
   public void Client_instantiatesCorrectly_true(){
     Client myClient = new Client("Michael King");
     assertEquals(true, myClient instanceof Client);
@@ -16,11 +16,18 @@ public class ClientTest{
 
   @Test
   public void all_returnsAllInstancesOfClient_true(){
-    Client firstClient = new Client("Superman", 35, "Flight", "Kryptonite");
-    Client secondClient = new Client("Antman", 32, "Shrinkage", "Aardvarks");
+    Client firstClient = new Client("James Redford");
+    Client secondClient = new Client("Kyle Jenkins");
     assertEquals(true, Client.all().contains(firstClient));
     assertEquals(true, Client.all().contains(secondClient));
     }
+
+    @Test
+    public void getId_clientsInstantiateWithAnID_1() {
+      Client myClient = new Client("Harold Kumar", 1);
+      myClient.save();
+      assertTrue(myClient.getId() > 0);
+  }
 
 
 }

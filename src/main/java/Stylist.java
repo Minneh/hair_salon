@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import org.sql2o.*;
 
 public class Stylist{
   private String name;
@@ -34,13 +35,6 @@ public class Stylist{
     }
   }
 
-  @Test
-  public void equals_returnsTrueIfNamesAretheSame() {
-    Stylist firstStylist = new Stylist("Jean Adams");
-    Stylist secondStylist = new Stylist("Jean Adams");
-    assertTrue(firstStylist.equals(secondStylist));
-  }
-
   @Override
   public boolean equals(Object otherStylist){
     if (!(otherStylist instanceof Stylist)){
@@ -60,7 +54,7 @@ public class Stylist{
         .getKey();
     }
   }
-
+  
   public List<Client> getClients(){
     try(Connection con = DB.sql2o.open()){
       String sql = "SELECT * FROM clients WHERE stylistId=:id;";

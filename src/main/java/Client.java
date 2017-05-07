@@ -8,8 +8,9 @@ public class Client{
 
 
   // class constructor
-  public Client(String name){
+  public Client(String name, int stylistId){
     this.name = name;
+    this.stylistId = stylistId;
   }
 
   //get client name

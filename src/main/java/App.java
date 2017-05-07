@@ -22,6 +22,7 @@ public class App {
     staticFileLocation("/public");
     String layout = "templates/layout.vtl";
 
+    //home
     get( "/",(request,response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("stylists", Stylist.all());
@@ -29,19 +30,29 @@ public class App {
       return new ModelAndView(model,layout);
     },new VelocityTemplateEngine());
 
+    //create new stylist
     get("/stylists/new", (request, response) -> {
     Map<String, Object> model = new HashMap<String, Object>();
     model.put("template", "templates/stylist-form.vtl");
     return new ModelAndView(model, layout);
   }, new VelocityTemplateEngine());
 
-
+    //list stylists
     get("/stylists", (request, response) -> {
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("stylists", Stylist.all());
         model.put("template", "templates/stylists.vtl");
         return new ModelAndView(model, layout);
       }, new VelocityTemplateEngine());
+
+      post("/stylists", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String name = request.queryParams("name");
+      Stylist newStylist = new Stylist(name);
+      newStylist.save();
+      model.put("template", "templates/stylist-success.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
 
   }
 }

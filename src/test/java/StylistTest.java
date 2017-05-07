@@ -65,4 +65,12 @@ public class StylistTest{
         .getKey();
     }
   }
+
+  @Test
+  public void save_assignsIdToObject() {
+    Stylist myStylist = new Stylist("Stan Smith");
+    myStylist.save();
+    Stylist savedStylist = Stylist.all().get(0);
+    assertEquals(myStylist.getId(), savedStylist.getId());
+  }
 }

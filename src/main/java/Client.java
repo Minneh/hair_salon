@@ -26,4 +26,14 @@ public class Client{
     return id;
   }
 
+  public static Task find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM tasks where id=:id";
+      Task task = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Task.class);
+      return task;
+    }
+  }
+
 }

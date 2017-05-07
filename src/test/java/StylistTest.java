@@ -24,5 +24,12 @@ public class StylistTest{
     secondStylist.save();
     assertEquals(true, Stylist.all().get(0).equals(firstStylist));
     assertEquals(true, Stylist.all().get(1).equals(secondStylist));
- }
+  }
+
+ @Test
+    public void getId_stylistsInstantiateWithAnId_1() {
+    Stylist testStylist = new Stylist("Shaniqua Johnson");
+    testStylist.save();
+    assertTrue(testStylist.getId() > 0);
+  }
 }

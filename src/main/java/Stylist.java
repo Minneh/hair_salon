@@ -41,4 +41,14 @@ public class Stylist{
     assertTrue(firstStylist.equals(secondStylist));
   }
 
+  @Override
+  public boolean equals(Object otherStylist){
+    if (!(otherStylist instanceof Stylist)){
+      return false;
+    } else{
+      Stylist newStylist = (Stylist) otherStylist;
+      return this.getName().equals(newStylist.getName()) && this.getId() == newStylist.getId();
+    }
+  }
+
 }

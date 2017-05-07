@@ -21,4 +21,8 @@ public class Client{
     return instances;
   }
 
+  public int getId(){
+    return id;
+  }
+
 }

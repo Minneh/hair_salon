@@ -44,7 +44,6 @@ public class ClientTest{
       assertTrue(myClient.getId() > 0);
   }
 
-
   @Test
   public void find_returnsClientWithSameId_secondClient() {
     Client firstClient = new Client("James Redford", 1);

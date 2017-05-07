@@ -55,4 +55,14 @@ public class StylistTest{
     myStylist.save();
     assertTrue(Stylist.all().get(0).equals(myStylist));
   }
+
+  public void save(){
+    try (Connection con = DB.sql2o.open()){
+      String sql = "INSERT INTO stylists (name) VALUES (:name);";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("name", this.name)
+        .executeUpdate()
+        .getKey();
+    }
+  }
 }

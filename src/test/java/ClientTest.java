@@ -1,8 +1,21 @@
+import org.sql2o.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 
 // class constructor
 public class ClientTest{
+  @Before
+  public void setUp() {
+    DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/hair_salon_test", null, null);
+  }
+
+  @After
+  public void tearDown() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "DELETE FROM clients *;";
+      con.createQuery(sql).executeUpdate();
+    }
+  }
   // confirm we can successfully instantiate Client objects
   public void Client_instantiatesCorrectly_true(){
     Client myClient = new Client("Michael King", 1);
@@ -37,6 +50,13 @@ public class ClientTest{
     Client secondClient = new Client("Kyle Jenkins", 1);
     secondClient.save();
     assertEquals(Client.find(secondClient.getId()), secondClient);
+  }
+
+  @Test
+  public void save_returnsTrueIfNamesAretheSame() {
+    Client myClient = new Client("Merques Houston", 1);
+    myClient.save();
+    assertTrue(Client.all().get(0).equals(myClient));
   }
 
 }

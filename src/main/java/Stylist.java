@@ -34,4 +34,11 @@ public class Stylist{
     }
   }
 
+  @Test
+  public void equals_returnsTrueIfNamesAretheSame() {
+    Stylist firstStylist = new Stylist("Jean Adams");
+    Stylist secondStylist = new Stylist("Jean Adams");
+    assertTrue(firstStylist.equals(secondStylist));
+  }
+
 }

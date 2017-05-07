@@ -5,13 +5,13 @@ import org.sql2o.*;
 public class Client{
   private String name;
   private int id;
-  private int stylistId;
+  private int stylist_id;
 
 
   // class constructor
-  public Client(String name, int stylistId){
+  public Client(String name, int stylist_id){
     this.name = name;
-    this.stylistId = stylistId;
+    this.stylist_id = stylist_id;
   }
 
   //get client name
@@ -19,8 +19,8 @@ public class Client{
     return name;
   }
 
-  public int getStylistId() {
-    return stylistId;
+  public int getstylist_id() {
+    return stylist_id;
   }
 
   public int getId(){
@@ -28,7 +28,7 @@ public class Client{
   }
 
   public static List<Client> all() {
-    String sql = "SELECT id, name, stylistId FROM clients;";
+    String sql = "SELECT id, name, stylist_id FROM clients;";
     try(Connection con = DB.sql2o.open()) {
      return con.createQuery(sql).executeAndFetch(Client.class);
     }
@@ -52,16 +52,16 @@ public class Client{
       Client newClient = (Client) otherClient;
       return this.getName().equals(newClient.getName()) &&
              this.getId() == newClient.getId() &&
-             this.getStylistId() == newClient.getStylistId();
+             this.getstylist_id() == newClient.getstylist_id();
     }
   }
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO clients(name, stylistId) VALUES (:name, :stylistId)";
+      String sql = "INSERT INTO clients(name, stylist_id) VALUES (:name, :stylist_id)";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", this.name)
-        .addParameter("stylistId", this.stylistId)
+        .addParameter("stylist_id", this.stylist_id)
         .executeUpdate()
         .getKey();
     }
@@ -75,6 +75,15 @@ public class Client{
       .addParameter("id", id)
       .executeUpdate();
     }
+  }
+
+  public static List<Client> getClientsBystylist_id(int stylist_id) {
+     try (Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM clients WHERE stylist_id=:stylist_id;";
+      return con.createQuery(sql)
+        .addParameter("stylist_id", stylist_id)
+        .executeAndFetch(Client.class);
+      }
   }
 
   public void delete() {

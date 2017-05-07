@@ -54,14 +54,27 @@ public class Stylist{
         .getKey();
     }
   }
-  
+
   public List<Client> getClients(){
     try(Connection con = DB.sql2o.open()){
-      String sql = "SELECT * FROM clients WHERE stylistId=:id;";
+      String sql = "SELECT * FROM clients WHERE stylist_id=:id;";
       return con.createQuery(sql)
         .addParameter("id", this.id)
         .executeAndFetch(Client.class);
     }
   }
+
+  public static void deleteStylistById(int stylist_id) {
+      try (Connection con = DB.sql2o.open()) {
+        String deleteClients = "DELETE FROM clients WHERE stylist_id=:stylist_id;";
+        con.createQuery(deleteClients)
+          .addParameter("stylist_id", stylist_id)
+          .executeUpdate();
+        String deleteStylist = "DELETE FROM stylists WHERE id=:stylist_id;";
+        con.createQuery(deleteStylist)
+          .addParameter("stylist_id", stylist_id)
+          .executeUpdate();
+      }
+    }
 
 }

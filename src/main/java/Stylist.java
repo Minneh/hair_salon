@@ -13,4 +13,11 @@ public class Stylist{
     return name;
   }
 
+  public static List<Stylist> all(){
+    String sql = "SELECT id, name FROM stylists;";
+    try(Connection con = DB.sql2o.open()){
+      return con.createQuery(sql).executeAndFetch(Stylist.class);
+    }
+  }
+
 }

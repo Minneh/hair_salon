@@ -3,7 +3,7 @@ apply plugin: 'application'
 
 archivesBaseName = "hair-salon"
 version = '1.0'
-applicationName = "app"
+applicationName = "hair-salon-minneh"
 mainClassName = "App"
 
 repositories {

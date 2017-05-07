@@ -69,10 +69,10 @@ public class ClientTest{
 
   @Test
   public void update_updatesClientName_true() {
-    Client myClient = new Client("MoeshaJohnson", 1);
+    Client myClient = new Client("Moesha Johnson", 1);
     myClient.save();
     myClient.update("Cinderella Jones");
-    assertEquals("Cinderella Jones",getName());
+    assertEquals("Cinderella Jones",  Client.find(myClient.getId()).getName());
   }
 
 }

@@ -32,4 +32,13 @@ public class StylistTest{
     testStylist.save();
     assertTrue(testStylist.getId() > 0);
   }
+
+  @Test
+ public void find_returnsStylistWithSameId_secondStylist() {
+   Stylist firstStylist = new Stylist("James Dean");
+   firstStylist.save();
+   Stylist secondStylist = new Stylist("George DeJungle");
+   secondStylist.save();
+   assertEquals(Stylist.find(secondStylist.getId()), secondStylist);
+ }
 }

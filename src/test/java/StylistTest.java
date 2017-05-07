@@ -17,7 +17,7 @@ public class StylistTest{
   }
 
   @Test
-   public void all_returnsAllInstancesOfStylist_true() {
+  public void all_returnsAllInstancesOfStylist_true() {
     Stylist firstStylist = new Stylist("Yanti Adams");
     firstStylist.save();
     Stylist secondStylist = new Stylist("Kaylee Moore");
@@ -27,18 +27,32 @@ public class StylistTest{
   }
 
  @Test
-    public void getId_stylistsInstantiateWithAnId_1() {
+  public void getId_stylistsInstantiateWithAnId_1() {
     Stylist testStylist = new Stylist("Shaniqua Johnson");
     testStylist.save();
     assertTrue(testStylist.getId() > 0);
   }
 
   @Test
- public void find_returnsStylistWithSameId_secondStylist() {
-   Stylist firstStylist = new Stylist("James Dean");
-   firstStylist.save();
-   Stylist secondStylist = new Stylist("George DeJungle");
-   secondStylist.save();
-   assertEquals(Stylist.find(secondStylist.getId()), secondStylist);
- }
+  public void find_returnsStylistWithSameId_secondStylist() {
+    Stylist firstStylist = new Stylist("James Dean");
+    firstStylist.save();
+    Stylist secondStylist = new Stylist("George DeJungle");
+    secondStylist.save();
+    assertEquals(Stylist.find(secondStylist.getId()), secondStylist);
+  }
+
+  @Test
+  public void equals_returnsTrueIfNamesAretheSame() {
+    Stylist firstStylist = new Stylist("Peter Griffin");
+    Stylist secondStylist = new Stylist("Peter Griffin");
+    assertTrue(firstStylist.equals(secondStylist));
+  }
+
+  @Test
+  public void save_savesIntoDatabase_true() {
+    Stylist myStylist = new Stylist("Peter Griffin");
+    myStylist.save();
+    assertTrue(Stylist.all().get(0).equals(myStylist));
+  }
 }

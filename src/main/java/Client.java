@@ -2,16 +2,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Client{
-  private String mName;
+  private String name;
+  private int id;
+  private int stylistId;
+
 
   // class constructor
   public Client(String name){
-    mName = name;
+    this.name = name;
   }
 
   //get client name
   public String getName(){
-    return mName;
+    return name;
+  }
+
+  public static List<Hero> all() {
+    return instances;
   }
 
 }

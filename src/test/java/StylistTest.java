@@ -15,4 +15,14 @@ public class StylistTest{
     Stylist testStylist = new Stylist("Jenna Marbles");
     assertEquals("Jenna Marbles", testStylist.getName());
   }
+
+  @Test
+   public void all_returnsAllInstancesOfStylist_true() {
+    Stylist firstStylist = new Stylist("Yanti Adams");
+    firstStylist.save();
+    Stylist secondStylist = new Stylist("Kaylee Moore");
+    secondStylist.save();
+    assertEquals(true, Stylist.all().get(0).equals(firstStylist));
+    assertEquals(true, Stylist.all().get(1).equals(secondStylist));
+ }
 }

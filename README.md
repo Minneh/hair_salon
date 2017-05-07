@@ -26,4 +26,19 @@ You will need the following things properly installed on your computer.
 
 ### Building
 
-* `gradle build` (development)
+* `gradle build`
+
+### SQL
+
+CREATE DATABASE hair_salon;
+
+CREATE TABLE stylists (
+  id serial PRIMARY KEY,
+  name varchar
+);
+
+CREATE TABLE clients (
+  id serial PRIMARY KEY,
+  name varchar,
+  stylist_id int
+);

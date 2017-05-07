@@ -20,4 +20,11 @@ public class Stylist{
     }
   }
 
+  @Test
+   public void getId_stylistsInstantiateWithAnId_1() {
+    Stylist testStylist = new Stylist("Shaniqua Johnson");
+    testStylist.save();
+    assertTrue(testStylist.getId() > 0);
+ }
+
 }

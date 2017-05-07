@@ -9,4 +9,6 @@ public class StylistTest{
     Category testCategory = new Category("Home");
     assertEquals(true, testCategory instanceof Category);
   }
+
+  
 }

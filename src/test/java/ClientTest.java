@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 public class ClientTest{
   @Rule
   public DatabaseRule database = new DatabaseRule();
-  
+
   // confirm we can successfully instantiate Client objects
   public void client_instantiatesCorrectly_true(){
     Client myClient = new Client("Michael King", 1);
@@ -75,11 +75,11 @@ public class ClientTest{
   }
 
   @Test
-  public void delete_deletesClient_true() {
+  public void deleteClientById_deletesClient_true() {
     Client myClient = new Client("Melanie Griffin", 1);
     myClient.save();
     int myClientId = myClient.getId();
-    myClient.delete();
+    myClient.deleteClientById(myClientId);
     assertEquals(null, Client.find(myClientId));
   }
 

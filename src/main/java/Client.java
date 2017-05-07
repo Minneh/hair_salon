@@ -77,7 +77,7 @@ public class Client{
     }
   }
 
-  public static List<Client> getClientsBystylist_id(int stylist_id) {
+  public static List<Client> getClientsByStylistId(int stylist_id) {
      try (Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM clients WHERE stylist_id=:stylist_id;";
       return con.createQuery(sql)
@@ -86,12 +86,13 @@ public class Client{
       }
   }
 
-  public void delete() {
-  try(Connection con = DB.sql2o.open()) {
-  String sql = "DELETE FROM clients WHERE id = :id;";
-  con.createQuery(sql)
-    .addParameter("id", id)
-    .executeUpdate();
+  public static void deleteClientById(int id) {
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "DELETE FROM clients WHERE id=:id;";
+      con.createQuery(sql)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
   }
-}
+
 }

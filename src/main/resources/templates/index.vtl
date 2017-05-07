@@ -1,5 +1,21 @@
-<!-- Homepage -->
-<h1>Welcome to Monique's Hair Salon!</h1>
+<h2 class="well">Welcome to Monique's Hair Salon!</h2>
 
-<a href="/stylists">View All Current Stylists</a><br>
-<a href="/stylists/new">Add a New Stylist</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Stylist's Name</th>
+      <th>Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    #foreach ($stylist in $stylists)
+      <tr>
+        <td><a href="/stylist/$stylist.getId()">$stylist.getName()</a></td>
+        <td><a href="/delete/$stylist.getId()"><span class="glyphicon
+          glyphicon-trash" aria-hidden="true"></a></span></td>
+      </tr>
+    #end
+  </tbody>
+</table>
+
+<a href="/add-stylist" class="btn btn-success">Add New Stylist</a>

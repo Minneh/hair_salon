@@ -20,7 +20,10 @@ public class Client{
   }
 
   public static List<Client> all() {
-    return instances;
+    String sql = "SELECT id, name, stylistId FROM clients";
+    try(Connection con = DB.sql2o.open()) {
+     return con.createQuery(sql).executeAndFetch(Client.class);
+    }
   }
 
   public int getId(){

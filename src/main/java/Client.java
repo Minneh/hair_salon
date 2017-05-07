@@ -26,13 +26,13 @@ public class Client{
     return id;
   }
 
-  public static Task find(int id) {
+  public static Client find(int id) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM tasks where id=:id";
-      Task task = con.createQuery(sql)
+      String sql = "SELECT * FROM clients where id=:id";
+      Client client = con.createQuery(sql)
         .addParameter("id", id)
-        .executeAndFetchFirst(Task.class);
-      return task;
+        .executeAndFetchFirst(Client.class);
+      return client;
     }
   }
 
